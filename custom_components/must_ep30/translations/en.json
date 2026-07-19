@@ -1,0 +1,226 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to a MUST EP30/EP3000",
+        "description": "Choose the device model and how it's connected. EP30 Pro always uses its built-in ASCII protocol over USB serial; EP3000 Plus speaks Modbus RTU and can be reached over USB serial or a network gateway.",
+        "data": {
+          "model_choice": "Device model & connection",
+          "name": "Name (optional)"
+        }
+      },
+      "serial": {
+        "title": "Serial connection",
+        "description": "Select the serial port the device is connected to. If available, prefer a stable /dev/serial/by-id/... path over a raw /dev/ttyUSBx path -- USB port numbering can change on reboot or replug, which would otherwise change this device's unique ID.",
+        "data": {
+          "device": "Serial port"
+        }
+      },
+      "tcp": {
+        "title": "Modbus TCP gateway",
+        "description": "Connect to an RS485-to-Ethernet/WiFi Modbus gateway.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "slave_id": "Modbus slave/device ID"
+        }
+      },
+      "udp": {
+        "title": "Modbus UDP gateway",
+        "description": "Connect to an RS485-to-Ethernet/WiFi Modbus gateway that uses UDP.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "slave_id": "Modbus slave/device ID"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not read from the device. Check the port/host, wiring, and that nothing else is using the connection.",
+      "invalid_calibration": "Battery voltage thresholds are invalid. Empty voltage must be below full voltage, and charging full voltage must not exceed boost voltage."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "reconfigure_successful": "Reconfiguration was successful."
+    }
+  },
+  "selector": {
+    "model_choice": {
+      "options": {
+        "ep30_pro_serial": "MUST EP30 Pro (Serial, ASCII protocol)",
+        "ep3000_plus_serial": "MUST EP3000 Plus (Serial, Modbus RTU)",
+        "ep3000_plus_tcp": "MUST EP3000 Plus (Modbus TCP gateway)",
+        "ep3000_plus_udp": "MUST EP3000 Plus (Modbus UDP gateway)"
+      }
+    }
+  },
+  "options": {
+    "error": {
+      "invalid_calibration": "Battery voltage thresholds are invalid. Empty voltage must be below full voltage, and charging full voltage must not exceed boost voltage."
+    },
+    "step": {
+      "init": {
+        "menu_options": {
+          "general": "Poll interval",
+          "battery_calibration": "Battery calibration (advanced)"
+        }
+      },
+      "general": {
+        "title": "Poll interval",
+        "data": {
+          "poll_interval": "Poll interval (seconds)"
+        }
+      },
+      "battery_calibration": {
+        "title": "Battery calibration",
+        "description": "The battery-level (%) sensor is estimated from voltage using these thresholds, since neither protocol reports a true state-of-charge directly on this device family. Defaults match a 24V lead-acid bank -- adjust for your battery chemistry/bank size.",
+        "data": {
+          "charge_float_current": "Charging: float current threshold (A)",
+          "charge_full_voltage": "Charging: full voltage (V)",
+          "charge_boost_voltage": "Charging: boost voltage (V)",
+          "charge_empty_voltage": "Charging: empty voltage (V)",
+          "discharge_full_voltage": "Discharging: full voltage (V)",
+          "discharge_empty_voltage": "Discharging: empty voltage (V)",
+          "adc_battery_voltage_max": "ADC scaling: max battery voltage (V)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "rating_voltage": { "name": "Rating voltage" },
+      "rating_current": { "name": "Rating current" },
+      "nominal_battery_voltage": { "name": "Nominal battery voltage" },
+      "nominal_frequency": { "name": "Nominal frequency" },
+      "input_voltage": { "name": "Input voltage" },
+      "fault_voltage": { "name": "Last fault voltage" },
+      "output_voltage": { "name": "Output voltage" },
+      "load_percent": { "name": "Load" },
+      "output_frequency": { "name": "Output frequency" },
+      "battery_voltage": { "name": "Battery voltage" },
+      "inverter_temperature": { "name": "Inverter temperature" },
+      "working_status": { "name": "Working status" },
+      "fault_state": { "name": "Fault state" },
+      "battery_charging_current": { "name": "Battery charging current" },
+      "charger_battery_voltage": { "name": "Charger battery voltage" },
+      "charger_value1": { "name": "Charger value 1" },
+      "charger_value2": { "name": "Charger value 2" },
+      "charger_value3": { "name": "Charger value 3" },
+      "charger_value4": { "name": "Charger value 4" },
+      "battery_level": { "name": "Battery level" },
+      "output_power": { "name": "Output power" },
+      "machine_type": {
+        "name": "Machine type",
+        "state": {
+          "ep2000_pro": "EP2000 Pro",
+          "unspecified": "Unspecified",
+          "pv2000_pro": "PV2000 Pro",
+          "ep3300": "EP3300",
+          "unknown": "Unknown"
+        }
+      },
+      "software_version": { "name": "Software version" },
+      "work_state": {
+        "name": "Work state",
+        "state": {
+          "self_check": "Self-check",
+          "backup": "Backup (discharging)",
+          "line": "Line (charging from grid)",
+          "stop": "Stopped",
+          "charger": "Charging",
+          "soft_start": "Soft start",
+          "power_off": "Power off",
+          "standby": "Standby",
+          "debug": "Debug",
+          "unknown": "Unknown"
+        }
+      },
+      "battery_class": { "name": "Battery class" },
+      "rated_power": { "name": "Rated power" },
+      "grid_voltage": { "name": "Grid voltage" },
+      "grid_frequency": { "name": "Grid frequency" },
+      "load_current": { "name": "Load current" },
+      "load_power": { "name": "Load power" },
+      "battery_temperature": { "name": "Battery temperature" },
+      "battery_soc": { "name": "Battery state of charge" },
+      "buzzer_state": {
+        "name": "Buzzer state",
+        "state": {
+          "normal": "Normal",
+          "silence": "Silenced",
+          "unknown": "Unknown"
+        }
+      },
+      "system_fault": {
+        "name": "System fault",
+        "state": {
+          "ok": "OK",
+          "fan_error": "Fan error",
+          "over_temperature": "Over temperature",
+          "battery_voltage_too_high": "Battery voltage too high",
+          "battery_voltage_too_low": "Battery voltage too low",
+          "short": "Output short circuit",
+          "inverter_output_voltage_high": "Inverter output voltage high",
+          "over_load": "Overload",
+          "main_relay_failed": "Main relay failed",
+          "rated_load_recognition_failed": "Rated load recognition failed",
+          "grid_voltage_low": "Grid voltage low",
+          "grid_voltage_high": "Grid voltage high",
+          "grid_under_frequency": "Grid under-frequency",
+          "grid_over_frequency": "Grid over-frequency",
+          "over_current": "Overcurrent",
+          "output_voltage_low": "Output voltage low",
+          "unknown": "Unknown"
+        }
+      },
+      "system_alarm": {
+        "name": "System alarm",
+        "state": {
+          "ok": "OK",
+          "inverter_over_temperature": "Inverter over temperature",
+          "battery_over_temperature": "Battery over temperature",
+          "battery_voltage_too_high": "Battery voltage too high",
+          "battery_voltage_too_low": "Battery voltage too low",
+          "over_load": "Overload",
+          "unknown": "Unknown"
+        }
+      },
+      "charge_stage": {
+        "name": "Charge stage",
+        "state": {
+          "cc": "Constant current",
+          "cv": "Constant voltage",
+          "fv": "Float voltage",
+          "unknown": "Unknown"
+        }
+      },
+      "grid_charge_flag": {
+        "name": "Grid charge flag",
+        "state": {
+          "grid_no_charge": "Not charging from grid",
+          "grid_charge": "Charging from grid",
+          "unknown": "Unknown"
+        }
+      },
+      "grid_state": {
+        "name": "Grid state",
+        "state": {
+          "disconnected": "Disconnected",
+          "connected": "Connected",
+          "warning": "Warning",
+          "unknown": "Unknown"
+        }
+      }
+    },
+    "binary_sensor": {
+      "utility_power_present": { "name": "Utility power present" },
+      "battery_low": { "name": "Battery low" },
+      "ups_failed": { "name": "UPS failed" },
+      "line_interactive_type": { "name": "Line-interactive type" },
+      "test_in_progress": { "name": "Test in progress" },
+      "shutdown_active": { "name": "Shutdown active" },
+      "beeper_on": { "name": "Beeper on" },
+      "charger_action": { "name": "Charger action" }
+    }
+  }
+}

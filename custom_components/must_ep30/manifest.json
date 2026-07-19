@@ -1,0 +1,13 @@
+{
+  "domain": "must_ep30",
+  "name": "MUST EP30/EP3000",
+  "codeowners": ["@mkbodanu4"],
+  "config_flow": true,
+  "dependencies": ["usb"],
+  "documentation": "https://github.com/mkbodanu4/ha-must-ep30",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/mkbodanu4/ha-must-ep30/issues",
+  "requirements": ["pymodbus>=3.13.1", "serialx>=1.8.2"],
+  "version": "0.1.0"
+}

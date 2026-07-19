@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest an improvement, or request support for another MUST model
+labels: [enhancement]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like to see?
+    validations:
+      required: true
+  - type: textarea
+    id: model-support
+    attributes:
+      label: If this is a new model (e.g. EP3300, EP3300 TLV, full EP2000 Pro)
+      description: >-
+        New models need a real register map. If you can capture a Modbus
+        register dump (see ep3000_plus_debug.py in the predecessor project
+        for the idea) or the vendor's monitoring software traffic, attach it
+        here -- that's the fastest path to adding a devices/epXXXX.py profile.

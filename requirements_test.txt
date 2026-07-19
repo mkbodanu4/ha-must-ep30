@@ -1,0 +1,19 @@
+pytest-homeassistant-custom-component>=0.13.346
+pytest-asyncio
+pytest-cov
+# Matches manifest.json's floor, which matches HA core's pinned constraint
+# (pymodbus==3.13.1 in homeassistant/package_constraints.txt) -- HA installs
+# custom-integration requirements under that constraints file, so anything
+# excluding 3.13.1 fails at runtime with RequirementsNotFound even though
+# `pip install` alone would happily resolve a newer version.
+pymodbus>=3.13.1
+serialx>=1.8.2
+# Transitive runtime deps of homeassistant.components.usb, pulled in because
+# our manifest.json declares "usb" as a dependency (required for
+# SerialPortSelector to enumerate ports) -- HA core bundles these itself,
+# but the test environment doesn't install them unless listed here.
+aiousbwatcher
+aioesphomeapi
+ruff
+black
+mypy

@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a problem with the MUST EP30/EP3000 integration
+labels: [bug]
+body:
+  - type: dropdown
+    id: model
+    attributes:
+      label: Device model
+      options:
+        - EP30 Pro (Serial/ASCII)
+        - EP3000 Plus (Serial/Modbus RTU)
+        - EP3000 Plus (Modbus TCP gateway)
+        - EP3000 Plus (Modbus UDP gateway)
+        - Other/unsure
+    validations:
+      required: true
+  - type: input
+    id: ha_version
+    attributes:
+      label: Home Assistant version
+    validations:
+      required: true
+  - type: input
+    id: integration_version
+    attributes:
+      label: Integration version
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include exact sensor values if they look wrong -- this protocol has no checksum, so garbled reads are a real failure mode.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics dump
+      description: Settings -> Devices & Services -> MUST EP30/EP3000 -> ... -> Download diagnostics. Please attach the file rather than pasting -- it may contain your host/serial port path.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: text

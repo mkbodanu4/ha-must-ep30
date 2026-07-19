@@ -1,0 +1,26 @@
+[tool.ruff]
+# Intentionally NOT py314: PEP 758 (unparenthesized multi-exception except
+# clauses, e.g. `except OSError, ModbusException:`) landed in 3.14, and a
+# py314 target makes black/ruff rewrite existing `except (A, B):` code into
+# that new unparenthesized form. It's valid, but easy to misread as
+# Python-2-style syntax -- so we keep tooling on py313 style even though
+# the actual interpreter (see .github/workflows/test.yml, required by
+# Home Assistant >=2026.5.0) is 3.14+.
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "ASYNC"]
+ignore = ["E501"]
+
+[tool.black]
+target-version = ["py313"]
+line-length = 100
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
